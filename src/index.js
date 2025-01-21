@@ -17,11 +17,16 @@ app.use('/static', express.static('src/public'));
 app.get('/', (req, res) => {
     res.render('home');
 });
-
 //render the about page
 app.get('/about', (req, res) => {  
     res.render('about');
 });
+//render the not found page
+app.get('*', (req, res) => {
+    res.render('404');
+}); 
+
+
 
 app.listen(3000, () => {
     console.log('Server is listening on http://localhost:3000');
