@@ -13,8 +13,14 @@ app.set("views", "./src/views");
 
 app.use('/static', express.static("src/public"));
 
+//render the home page
 app.get("/", (req, res) => {
-    res.render("home", { layout: false });
+    res.render("home");
+});
+
+//render the about page
+app.get("/about", (req, res) => {  
+    res.render("about", { layout: false });
 });
 
 app.listen(3000, () => {
