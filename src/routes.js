@@ -6,7 +6,7 @@ import movieController from './controllers/movie-controller.js';
 const routes = Router();
 
 routes.use(homeController);
-routes.use(movieController);
+routes.use('/movies', movieController);
 
 //render the not found page
 routes.get('*', (req, res) => {
