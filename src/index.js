@@ -2,12 +2,16 @@ import express from 'express';
 import handelbars from 'express-handlebars';
 
 import routes from './routes.js';
+import showRatingHelper from './helpers/ratingHelper.js';
 
 const app = express();
 
 //set the view engine to handlebars
 app.engine('hbs', handelbars.engine({
-    extname: 'hbs'
+    extname: 'hbs',
+    helpers: {
+        showRating: showRatingHelper
+    }
 }));
 
 app.set('view engine', 'hbs');
