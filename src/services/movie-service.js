@@ -13,7 +13,12 @@ export default {
             ...movieData
         });
     },
-    getAllMovies() {
+    getAllMovies(filter = {}) {
+        let result = movies;
+
+        if (filter.search) {
+            result = result.filter(x => x.title.toLowerCase().includes(filter.search.toLowerCase()));
+        }
         return movies;
     }
 };
