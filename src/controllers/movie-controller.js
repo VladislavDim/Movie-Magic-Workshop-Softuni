@@ -3,6 +3,11 @@ import movieService from "../services/movie-service.js";
 
 const movieController = Router();
 
+movieController.get("/search", (req, res) => {
+    const movies = movieService.getAllMovies();
+    res.render('search', { movies });
+});
+
 movieController.get("/create", (req, res) => {
     res.render('create');
 });
@@ -10,7 +15,7 @@ movieController.get("/create", (req, res) => {
 movieController.post("/create", (req, res) => {
     const newMovie = req.body;
     movieService.createMovie(newMovie);
-    res.redirect('/');  
+    res.redirect('/');
 });
 
 movieController.get("/:movieId/details", (req, res) => {
