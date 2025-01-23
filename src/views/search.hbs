@@ -10,24 +10,6 @@
 
 <section id="catalog">
     <div class="band">
-
-        <!-- If there are posts for movie in the database display each of them -->
-        {{#each movies}}
-        <div class="flip flip-vertical">
-            <div class="front">
-                <img src="{{imageUrl}}" alt="Jungle-Couise">
-            </div>
-            <div class="back">
-                <h1>{{title}}</h1>
-                <h2>Genre: {{gener}}</h2>
-                <p>{{description}}</p>
-                <a href="/movies/{{id}}/details" class="details">Details</a>
-            </div>
-        </div>
-        {{else}}
-        <div class="no-posts">
-            <p class="no-offer">There are no movies matched...</p>
-        </div>
-        {{/each}}
+        {{>movie-list}}
     </div>
 </section>
