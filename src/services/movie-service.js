@@ -19,6 +19,13 @@ export default {
         if (filter.search) {
             result = result.filter(x => x.title.toLowerCase().includes(filter.search.toLowerCase()));
         }
+        if (filter.genre) {
+            result = result.filter(x => x.genre.toLowerCase().includes(filter.genre.toLowerCase()));
+        }
+        if (filter.year) {
+            result = result.filter(x => x.year == filter.year);
+        }
+
         return result;
     }
 };
