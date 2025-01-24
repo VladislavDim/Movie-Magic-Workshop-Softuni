@@ -19,6 +19,6 @@ export default {
         if (filter.search) {
             result = result.filter(x => x.title.toLowerCase().includes(filter.search.toLowerCase()));
         }
-        return movies;
+        return result;
     }
 };
