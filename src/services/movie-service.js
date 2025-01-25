@@ -1,8 +1,12 @@
 import { v4 as uuid } from 'uuid';
 import movies from '../movies.js';
+import genres from '../genres.js';
 
 export default {
 
+    getAllGenres() {
+        return genres;
+    },
     getMovieById(movieId) {
         return movies.find(x => x.id == movieId);
     },
