@@ -2,10 +2,10 @@
     <h1>Search</h1>
     <form action="/movies/search" method="GET" class="form">
         <input type="text" class="search" name="search" value="{{movieData.search}}" placeholder="Title...">
-        <select id="genre" name="genre" class="genre">
+        <select name="genre" class="genre">
             <option value="" disabled hidden selected> Genre...</option>
             {{#each genres}}
-            <option value="{{name}}">{{name}}</option>
+            <option value="{{name}}" {{#ifCond name ../movieData.genre}}selected{{/ifCond}}>{{name}}</option>
             {{/each}}
         </select>
         <input type="number" name="year" class="year" value="{{movieData.year}}" placeholder="Year...">

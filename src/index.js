@@ -3,6 +3,7 @@ import handelbars from 'express-handlebars';
 
 import routes from './routes.js';
 import showRatingHelper from './helpers/ratingHelper.js';
+import ifCondHelper from './helpers/ifCondHelper.js';
 
 const app = express();
 
@@ -10,7 +11,8 @@ const app = express();
 app.engine('hbs', handelbars.engine({
     extname: 'hbs',
     helpers: {
-        showRating: showRatingHelper
+        showRating: showRatingHelper,
+        ifCond: ifCondHelper
     }
 }));
 
