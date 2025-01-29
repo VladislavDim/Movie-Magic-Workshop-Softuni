@@ -1,11 +1,21 @@
 import express from 'express';
 import handelbars from 'express-handlebars';
+import mongoose from 'mongoose';
 
 import routes from './routes.js';
 import showRatingHelper from './helpers/ratingHelper.js';
 import ifCondHelper from './helpers/ifCondHelper.js';
 
 const app = express();
+
+//db connection
+try {
+    const uri = 'mongodb://localhost:27017/magic-movies';
+    await mongoose.connect(uri);
+    console.log('Connected to the database');
+} catch (err) {
+    console.log("Could not connect to the database. Exiting now...", err.message);
+}
 
 //set the view engine to handlebars
 app.engine('hbs', handelbars.engine({
@@ -19,6 +29,7 @@ app.engine('hbs', handelbars.engine({
 app.set('view engine', 'hbs');
 app.set('views', './src/views');
 
+//express settings
 app.use('/static', express.static('src/public'));
 app.use(express.urlencoded({ extended: true }));
 
