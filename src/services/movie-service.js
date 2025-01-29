@@ -11,11 +11,7 @@ export default {
         return Movie.findById(movieId);
     },
     createMovie(movieData) {
-        const id = uuid();
-        movies.push({
-            id,
-            ...movieData
-        });
+       return Movie.create(movieData);
     },
     getAllMovies(filter = {}) {
         let query = Movie.find({});
