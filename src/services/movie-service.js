@@ -18,18 +18,18 @@ export default {
         });
     },
     getAllMovies(filter = {}) {
-        let result = Movie.find({});
+        let query = Movie.find({});
 
-        // if (filter.search) {
-        //     result = result.filter(x => x.title.toLowerCase().includes(filter.search.toLowerCase()));
-        // }
-        // if (filter.genre) {
-        //     result = result.filter(x => x.genre.toLowerCase().includes(filter.genre.toLowerCase()));
-        // }
-        // if (filter.year) {
-        //     result = result.filter(x => x.year == filter.year);
-        // }
+        if (filter.search) {
+            query = query.find({ title: { $regex: filter.search, $options: 'i' } });
+        }
+        if (filter.genre) {
+            query = query.find({ genre: filter.genre });
+        }
+        if (filter.year) {
+            query = query.find({ year: filter.year });
+        }
 
-        return result;
+        return query;
     }
 };
