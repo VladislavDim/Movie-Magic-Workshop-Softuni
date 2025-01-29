@@ -1,4 +1,3 @@
-import { v4 as uuid } from 'uuid';
 import genres from '../genres.js';
 import Movie from '../models/Movie.js';
 
