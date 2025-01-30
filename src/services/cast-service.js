@@ -4,7 +4,12 @@ export default {
     createCast(castData) {
         return Cast.create(castData);
     },
-    getAllCasts() {
-        return Cast.find({});
+    getAllCasts(filter = {}) {
+        let query = Cast.find({});
+
+        if (filter.exclude) {
+            query.find({ _id: { $nin: filter.exclude } });
+        } 
+        return query;
     }
 }
