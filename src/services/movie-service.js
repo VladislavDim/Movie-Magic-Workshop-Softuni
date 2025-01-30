@@ -10,10 +10,10 @@ export default {
         return Movie.findById(movieId);
     },
     getMovieByIdWithCasts(movieId) {
-        return this.getMovieById(movieId).populate('casts');
+        return this.getMovieById(movieId).populate('casts.cast');
     },
     createMovie(movieData) {
-       return Movie.create(movieData);
+        return Movie.create(movieData);
     },
     getAllMovies(filter = {}) {
         let query = Movie.find({});
@@ -30,9 +30,9 @@ export default {
 
         return query;
     },
-    async attachCast(movieId, castId) {
+    async attachCast(movieId, castId, role) {
         const movie = await Movie.findById(movieId);
-        movie.casts.push(castId);
+        movie.casts.push({ cast: castId, role });
         await movie.save();
     }
 };
