@@ -6,7 +6,6 @@ const castSchema = new Schema({
     age: Number,
     born: String,
     imageUrl: String,
-    movies: [{ type: Schema.Types.ObjectId, ref: "Movie" }],
 });
 
 const Cast = model("Cast", castSchema);
