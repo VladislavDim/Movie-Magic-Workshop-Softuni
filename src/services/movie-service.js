@@ -9,6 +9,9 @@ export default {
     getMovieById(movieId) {
         return Movie.findById(movieId);
     },
+    getMovieByIdWithCasts(movieId) {
+        return this.getMovieById(movieId).populate('casts');
+    },
     createMovie(movieData) {
        return Movie.create(movieData);
     },
