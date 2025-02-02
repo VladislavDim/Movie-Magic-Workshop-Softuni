@@ -10,7 +10,7 @@ authController.get('/register', (req, res) => {
 authController.post('/register', async (req, res) => {
     const data = req.body;
     await authService.register(data);
-    res.end();
+    res.redirect('/');
 });
 
 authController.get('/login', (req, res) => {
