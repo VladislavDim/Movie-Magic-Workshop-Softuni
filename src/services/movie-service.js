@@ -12,8 +12,11 @@ export default {
     getMovieByIdWithCasts(movieId) {
         return this.getMovieById(movieId).populate('casts.cast');
     },
-    createMovie(movieData) {
-        return Movie.create(movieData);
+    createMovie(movieData, creatorId) {
+        return Movie.create({
+            ...movieData,
+            creator: creatorId
+        });
     },
     getAllMovies(filter = {}) {
         let query = Movie.find({});
