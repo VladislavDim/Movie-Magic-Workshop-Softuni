@@ -9,7 +9,7 @@ export default {
 
         if (filter.exclude) {
             query.find({ _id: { $nin: filter.exclude } });
-        } 
+        }
         return query;
     }
 }
