@@ -1,10 +1,14 @@
 import genres from '../genres.js';
+import categories from '../categories.js';
 import Movie from '../models/Movie.js';
 
 export default {
 
     getAllGenres() {
         return genres;
+    },
+    getAllCategories() {
+        return categories;
     },
     getMovieById(movieId) {
         return Movie.findById(movieId);
