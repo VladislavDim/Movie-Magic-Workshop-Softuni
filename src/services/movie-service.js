@@ -33,6 +33,9 @@ export default {
 
         return query;
     },
+    delete(movieId) {
+        return Movie.findByIdAndDelete(movieId);
+    },
     async attachCast(movieId, castId, role) {
         const movie = await Movie.findById(movieId);
         movie.casts.push({ cast: castId, role });
