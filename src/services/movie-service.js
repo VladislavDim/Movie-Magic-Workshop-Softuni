@@ -40,6 +40,9 @@ export default {
     delete(movieId) {
         return Movie.findByIdAndDelete(movieId);
     },
+    updateMovieById(movieId, movieData) {
+        return Movie.findByIdAndUpdate(movieId, movieData);
+    },
     async attachCast(movieId, castId, role) {
         const movie = await Movie.findById(movieId);
         movie.casts.push({ cast: castId, role });
