@@ -11,12 +11,13 @@ authController.get('/register', (req, res) => {
 
 authController.post('/register', async (req, res) => {
     const userData = req.body;
+
     try {
         await authService.register(userData);
     } catch (err) {
-        console.log(getErrorMessage(err));
+        const errMessage = getErrorMessage(err);
+        return res.render('auth/register', { errMessage });
     }
-
     res.redirect('/');
 });
 
