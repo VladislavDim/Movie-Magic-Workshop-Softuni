@@ -9,7 +9,17 @@ const movieSchema = new Schema({
         maxLength: [250, 'The movie title can\'t be more than 250 characters long!'],
         match: [/^[a-zA-Z0-9\s]+$/, 'Title should contain only English letters, digits, and whitespaces.']
     },
-    category: String,
+    category: {
+        type: String,
+        required: true,
+        enum: [
+            'TV Show',
+            'Animation',
+            'Movie',
+            'Documentary',
+            'Short Film'
+        ]
+    },
     genre: {
         type: String,
         required: [true, 'Genre is required!'],
@@ -32,7 +42,7 @@ const movieSchema = new Schema({
     },
     imageUrl: {
         type: String,
-        match: [/^(https?:\/\/).+\.(jpg|jpeg|png|gif|webp)$/i,'Image URL should start with \'http://\' or \'https://\' and end with a valid image format (jpg, jpeg, png, gif, webp).']
+        match: [/^(https?:\/\/).+\.(jpg|jpeg|png|gif|webp)$/i, 'Image URL should start with \'http://\' or \'https://\' and end with a valid image format (jpg, jpeg, png, gif, webp).']
     },
     rating: {
         type: Number,
