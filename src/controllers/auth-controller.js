@@ -34,8 +34,8 @@ authController.post('/login', async (req, res) => {
         res.redirect('/');
     }
     catch (err) {
-        console.log(err.message);
-        res.redirect('/404');
+        const errMessage = getErrorMessage(err);
+        return res.render('auth/login', { errMessage });
     }
 
 });
