@@ -13,7 +13,7 @@ export const tempData = (req, res, next) => {
 
     if (req.session.error.isFirstReq) {
         req.session.error.isFirstReq = false;
-        res.locals.error = req.session.error.message;
+        res.locals.errMessage = req.session.error.message;
     } else {
         req.session.error = null;
     }
