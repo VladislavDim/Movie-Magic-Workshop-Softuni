@@ -12,13 +12,13 @@ const movieSchema = new Schema({
     category: {
         type: String,
         required: true,
-        enum: [
-            'TV Show',
-            'Animation',
-            'Movie',
-            'Documentary',
-            'Short Film'
-        ]
+        // enum: [
+        //     'Tv Show',
+        //     'Animation',
+        //     'Movie',
+        //     'Documentary',
+        //     'Short Film'
+        // ]
     },
     genre: {
         type: String,
