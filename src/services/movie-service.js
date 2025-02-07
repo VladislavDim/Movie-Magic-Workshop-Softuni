@@ -41,7 +41,7 @@ export default {
         return Movie.findByIdAndDelete(movieId);
     },
     updateMovieById(movieId, movieData) {
-        return Movie.findByIdAndUpdate(movieId, movieData);
+        return Movie.findByIdAndUpdate(movieId, movieData, { runValidators: true });
     },
     async attachCast(movieId, castId, role) {
         const movie = await Movie.findById(movieId);
