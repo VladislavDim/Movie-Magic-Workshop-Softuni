@@ -5,7 +5,7 @@ import { isAuth } from "../middlewares/auth-middleware.js";
 import { getErrorMessage } from "../utils/error-utils.js";
 
 const movieController = Router();
-
+const categories = movieService.getAllCategories();
 
 movieController.get("/search", async (req, res) => {
     const movieData = req.query;
@@ -69,7 +69,6 @@ movieController.get('/:movieId/delete', isAuth, async (req, res) => {
 movieController.get('/:movieId/edit', isAuth, async (req, res) => {
     const movieId = req.params.movieId;
     const movie = await movieService.getMovieById(movieId);
-    const categories = movieService.getAllCategories();
 
     res.render('movie/edit', { movie, categories });
 });
@@ -81,7 +80,7 @@ movieController.post('/:movieId/edit', isAuth, async (req, res) => {
     try {
         await movieService.updateMovieById(movieId, movieData);
     } catch (err) {
-        return res.render('movie/edit', { movie: movieData, errMessage: getErrorMessage(err) });
+        return res.render('movie/edit', { movie: movieData, categories, errMessage: getErrorMessage(err) });
     }
 
     res.redirect(`/movies/${movieId}/details`);
