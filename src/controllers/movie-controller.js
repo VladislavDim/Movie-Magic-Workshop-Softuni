@@ -38,6 +38,11 @@ movieController.get('/:movieId/attach-cast', isAuth, async (req, res) => {
     const movieId = req.params.movieId;
     const movie = await movieService.getMovieById(movieId);
     const casts = await castService.getAllCasts({ exclude: movie.casts });
+    
+    if (!movie.creator?.equals(req.user?.id)) {
+        res.setError('You are not the movie owner!')
+        return res.redirect('/404');
+    }
 
     res.render('movie/attach-cast', { movie, casts });
 });
@@ -69,6 +74,11 @@ movieController.get('/:movieId/delete', isAuth, async (req, res) => {
 movieController.get('/:movieId/edit', isAuth, async (req, res) => {
     const movieId = req.params.movieId;
     const movie = await movieService.getMovieById(movieId);
+
+    if (!movie.creator?.equals(req.user?.id)) {
+        res.setError('You are not the movie owner!')
+        return res.redirect('/404');
+    }
 
     res.render('movie/edit', { movie, categories });
 });
