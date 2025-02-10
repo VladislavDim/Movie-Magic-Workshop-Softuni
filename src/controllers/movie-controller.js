@@ -15,14 +15,18 @@ movieController.get("/search", async (req, res) => {
 });
 
 movieController.get("/create", isAuth, (req, res) => {
-    res.render('create');
+    res.render('create', { categories });
 });
 
 movieController.post("/create", isAuth, async (req, res) => {
     const newMovie = req.body;
     const userId = req.user?.id;
-
-    await movieService.createMovie(newMovie, userId);
+    try {
+        await movieService.createMovie(newMovie, userId);
+    } catch (error) {
+        console.log(newMovie);
+        return res.render('create', { movie: newMovie, categories, errMessage: getErrorMessage(error) });
+    }
     res.redirect('/');
 });
 
@@ -38,7 +42,7 @@ movieController.get('/:movieId/attach-cast', isAuth, async (req, res) => {
     const movieId = req.params.movieId;
     const movie = await movieService.getMovieById(movieId);
     const casts = await castService.getAllCasts({ exclude: movie.casts });
-    
+
     if (!movie.creator?.equals(req.user?.id)) {
         res.setError('You are not the movie owner!')
         return res.redirect('/404');
